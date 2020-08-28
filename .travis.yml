@@ -3,19 +3,19 @@ services:
         - docker
 
 before_install:
-        - docker build -t andrew/react-test -f ./client/Dockerfile.dev ./client
+        - docker build -t ahong812/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-        - docker run -e CI=true andrew/react-test npm test 
+        - docker run -e CI=true ahong812/react-test npm test 
 
 after_success:
-        - docker build -t andrew/multi-client ./client
-        - docker build -t andrew/multi-nginx ./nginx
-        - docker build -t andrew/multi-server ./server
-        - docker build -t andrew/multi-worker ./worker
+        - docker build -t ahong812/multi-client ./client
+        - docker build -t ahong812/multi-nginx ./nginx
+        - docker build -t ahong812/multi-server ./server
+        - docker build -t ahong812/multi-worker ./worker
 
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-        - docker push andrew/multi-client
-        - docker push andrew/multi-nginx
-        - docker push andrew/multi-server
-        - docker push andrew/multi-worker 
+        - docker push ahong812/multi-client
+        - docker push ahong812/multi-nginx
+        - docker push ahong812/multi-server
+        - docker push ahong812/multi-worker 
